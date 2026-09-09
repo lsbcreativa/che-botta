@@ -221,6 +221,10 @@ body::before {
   -webkit-backdrop-filter: blur(14px) saturate(130%);
   box-shadow: 0 1px 0 var(--linea);
 }
+.site-header::before {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 100%; height: 200px;
+  background: var(--carbon); pointer-events: none;
+}
 .site-header::after {
   content: ""; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
   background: linear-gradient(90deg, var(--verde), var(--oro-2));
