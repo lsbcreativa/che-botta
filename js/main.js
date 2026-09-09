@@ -29,7 +29,7 @@
   /* ---- Header al hacer scroll + botón flotante ---- */
   const onScroll = () => {
     const y = window.scrollY;
-    header.classList.toggle('is-scrolled', y > 24);
+    header.classList.toggle('is-scrolled', y > 8);
     waFloat && waFloat.classList.toggle('is-visible', y > window.innerHeight * 0.6);
     const max = document.documentElement.scrollHeight - window.innerHeight;
     header.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
