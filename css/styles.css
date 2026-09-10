@@ -170,7 +170,7 @@ body::before {
 .prose strong { color: var(--crema); font-weight: 600; }
 .prose--light p { font-size: 1.12rem; line-height: 1.7; }
 
-.section { position: relative; padding-block: clamp(5rem, 10vw, 8.5rem); }
+.section { position: relative; padding-block: clamp(4rem, 7vw, 6.5rem); }
 
 /* ---------- Botones ---------- */
 .btn {
@@ -398,7 +398,7 @@ body::before {
 @keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Manifiesto ---------- */
-.manifiesto { padding-block: clamp(5rem, 11vw, 9rem); text-align: center; }
+.manifiesto { padding-block: clamp(4.5rem, 9vw, 7.5rem) clamp(1.5rem, 3vw, 2.5rem); text-align: center; }
 .manifiesto__line {
   font-family: var(--serif);
   font-size: clamp(2rem, 5.2vw, 4.6rem);
@@ -503,7 +503,7 @@ body::before {
 /* ---------- Familia (banda) ---------- */
 .familia {
   position: relative; overflow: hidden; isolation: isolate;
-  padding-block: clamp(7rem, 14vw, 12rem);
+  padding-block: clamp(5rem, 10vw, 8rem);
   text-align: center;
 }
 .familia__bg { position: absolute; inset: -12% 0; z-index: -1; }
@@ -978,6 +978,9 @@ body::before {
   padding-block: 1.5rem 2rem; font-size: .8rem; color: var(--crema-3);
 }
 .footer__memoria { font-family: var(--serif); font-style: italic; font-size: 1rem; color: var(--oro); }
+.footer__dev { width: 100%; text-align: center; font-size: .76rem; color: var(--crema-3); padding-top: 1rem; border-top: 1px solid var(--linea); margin-top: .4rem; }
+.footer__dev a { color: var(--crema-2); border-bottom: 1px solid rgba(244,237,220,.25); transition: color .3s, border-color .3s; }
+.footer__dev a:hover { color: var(--verde); border-color: var(--verde); }
 
 /* ---------- WhatsApp flotante ---------- */
 .wa-float {
