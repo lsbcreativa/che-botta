@@ -174,12 +174,12 @@
         '--delay': (-rnd(0, 3)).toFixed(2) + 's'
       });
     } else if (kind === 'fire') {
-      for (let i = 0; i < 5; i++) mk('flame', {
-        '--x': (i * 21 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(30, 42).toFixed(0) + '%',
+      for (let i = 0; i < 4; i++) mk('flame', {
+        '--x': (i * 27 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(36, 48).toFixed(0) + '%',
         '--h': rnd(34, 52).toFixed(0) + '%', '--t': rnd(.5, .9).toFixed(2) + 's',
         '--delay': (-rnd(0, 1)).toFixed(2) + 's'
       });
-      for (let i = 0; i < 8; i++) mk('ember', {
+      for (let i = 0; i < 6; i++) mk('ember', {
         '--x': rnd(10, 90).toFixed(1) + '%', '--s': rnd(2, 5).toFixed(1) + 'px',
         '--t': rnd(2.2, 4).toFixed(1) + 's', '--delay': (-rnd(0, 4)).toFixed(1) + 's',
         '--dx': rnd(-50, 50).toFixed(0) + 'px', '--o': rnd(.5, .95).toFixed(2)
