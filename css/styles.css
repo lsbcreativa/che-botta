@@ -651,7 +651,9 @@ body::before {
 .premium:hover .premium__media img { transform: scale(1.08); }
 .premium__media::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 70%, rgba(15,13,11,.55));
+  background:
+    linear-gradient(180deg, transparent 72%, rgba(15,13,11,.55)),
+    radial-gradient(115% 100% at 50% 45%, transparent 58%, rgba(15,13,11,.5));
 }
 .premium__body { position: relative; }
 .premium__title {
@@ -713,7 +715,9 @@ body::before {
 .product:hover .product__media img { transform: scale(1.06); }
 .product__media::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, transparent 60%, var(--carbon-2));
+  background:
+    linear-gradient(180deg, transparent 60%, var(--carbon-2)),
+    radial-gradient(115% 100% at 50% 45%, transparent 60%, rgba(15,13,11,.4));
 }
 .product__tag {
   position: absolute; top: 1rem; left: 1rem; z-index: 1;
