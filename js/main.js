@@ -5,6 +5,7 @@
   const nav = document.getElementById('nav');
   const toggle = document.getElementById('menuToggle');
   const waFloat = document.querySelector('.wa-float');
+  const toTop = document.getElementById('toTop');
   const intro = document.getElementById('intro');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -32,8 +33,19 @@
     header.classList.toggle('is-scrolled', y > 8);
     waFloat && waFloat.classList.toggle('is-visible', y > window.innerHeight * 0.6);
     const max = document.documentElement.scrollHeight - window.innerHeight;
-    header.style.setProperty('--progress', max > 0 ? (y / max).toFixed(4) : 0);
+    const progress = max > 0 ? (y / max).toFixed(4) : 0;
+    header.style.setProperty('--progress', progress);
+    if (toTop) {
+      toTop.style.setProperty('--progress', progress);
+      toTop.classList.toggle('is-visible', y > window.innerHeight * 0.8);
+    }
   };
+  if (toTop) {
+    toTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      toTop.blur();
+    });
+  }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
