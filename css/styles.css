@@ -116,6 +116,7 @@ body::before {
 .ornament--sm { width: 120px; height: 12px; margin: 0; }
 
 .br-m { display: none; }
+.nowrap { white-space: nowrap; }
 
 .gold {
   background: linear-gradient(100deg, #8f6f33 0%, #e6c987 35%, #fff0c2 50%, #e6c987 65%, #8f6f33 100%);
@@ -1166,4 +1167,44 @@ body::before {
   .pilares li, .ritual__steps li { padding: 1.5rem 1.3rem 1.7rem; }
   .product__body { padding: 1.2rem 1.25rem 1.4rem; }
   .productos__note { font-size: .9rem; padding-inline: .5rem; }
+}
+
+/* ---------- Pantallas muy angostas (Galaxy S20, iPhone SE, 320-400px) ---------- */
+@media (max-width: 400px) {
+  :root { --gutter: 1rem; }
+  .btn { max-width: 100%; }
+  .btn__opt { display: none; }
+  .hero__title { font-size: clamp(2.5rem, 13vw, 3.2rem); }
+  .hero__actions .btn { width: 100%; }
+  .premium { padding: 1.4rem 1.1rem 1.6rem; border-radius: 22px; }
+  .premium__actions .btn { font-size: .88rem; padding-inline: 1rem; }
+  .premium__list li { font-size: .92rem; }
+  .product p, .chapters p, .pilares p, .ritual__steps p, .premium__lead, .quote blockquote, .section-lead { text-align: left; text-align-last: auto; hyphens: manual; }
+  .section-head--center .section-lead { text-align: center; }
+  .contacto__copy .section-lead { text-align: left; }
+  .product__body { padding: 1.1rem 1.1rem 1.3rem; }
+  .product h3 span { font-size: 1.45rem; }
+  .chapters li { padding: 1.4rem 1.1rem 1.6rem; }
+  .pilares li, .ritual__steps li { padding: 1.3rem 1.1rem 1.5rem; }
+  .facts strong { font-size: 2.1rem; }
+  .facts span { font-size: .66rem; letter-spacing: .12em; }
+  .manifiesto__line { font-size: clamp(1.5rem, 7.2vw, 2rem); }
+  .section-title { font-size: clamp(1.9rem, 8.6vw, 2.4rem); }
+  .section-title--xl { font-size: clamp(2.3rem, 10.5vw, 3rem); }
+  .familia__title { font-size: clamp(2.2rem, 10.5vw, 3rem); }
+  .homenaje__firma { font-size: 1.6rem; }
+  .quote { width: 260px; padding: 1.4rem 1.3rem 1.3rem; }
+  .contact-tile__value { font-size: 1.02rem; }
+  .footer__nav { gap: 1rem 1.2rem; }
+  .to-top { width: 44px; height: 44px; }
+  .wa-float { width: 48px; height: 48px; }
+}
+
+@media (max-width: 360px) {
+  .contact-tile { grid-template-columns: 1fr; row-gap: .15rem; }
+  .contact-tile .ico { grid-row: auto; margin-bottom: .35rem; }
+  .contact-tile__value { font-size: 1.05rem; }
+  .hero__caption span { font-size: .66rem; }
+  .premium .eyebrow--split { flex-direction: column; align-items: flex-start; gap: .25rem; line-height: 1.4; }
+  .premium .eyebrow--split i { display: none; }
 }
