@@ -782,15 +782,15 @@ body::before {
 }
 .fx-stamp {
   position: absolute; right: .9rem; top: .9rem; z-index: 3; pointer-events: none;
-  width: 96px; height: 96px; border-radius: 50%;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  width: 94px; height: 94px; border-radius: 50%; padding: 6px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
   background: rgba(15,13,11,.78); border: 2px solid var(--verde);
   box-shadow: 0 0 0 4px rgba(15,13,11,.6), 0 14px 30px -10px rgba(0,0,0,.9), inset 0 0 0 1px rgba(112,191,68,.35);
   opacity: 0; transform: scale(1.8) rotate(-24deg);
   transition: opacity .35s var(--ease), transform .45s cubic-bezier(.2, 1.4, .4, 1);
 }
-.fx-stamp img { width: 40px; height: auto; border-radius: 50%; background: #fff; padding: 1px; }
-.fx-stamp span { font-size: .46rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--verde); line-height: 1; white-space: nowrap; }
+.fx-stamp img { width: 36px; height: auto; border-radius: 50%; background: #fff; padding: 1px; }
+.fx-stamp span { font-size: .5rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--verde); line-height: 1.2; text-align: center; white-space: nowrap; }
 .product:hover .fx-stamp, .product.is-fx .fx-stamp { opacity: 1; transform: scale(1) rotate(-10deg); }
 
 /* Premium: lámina dorada + destellos */
