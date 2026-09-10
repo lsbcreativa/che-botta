@@ -162,24 +162,24 @@
       frag.appendChild(el);
     };
     if (kind === 'herb') {
-      for (let i = 0; i < 12; i++) mk('', {
+      for (let i = 0; i < 8; i++) mk('', {
         '--x': rnd(5, 95).toFixed(1) + '%', '--s': rnd(8, 16).toFixed(0) + 'px',
         '--t': rnd(5, 9).toFixed(1) + 's', '--delay': (-rnd(0, 9)).toFixed(1) + 's',
         '--dx': rnd(-40, 40).toFixed(0) + 'px'
       });
     } else if (kind === 'gold') {
-      for (let i = 0; i < 14; i++) mk('', {
+      for (let i = 0; i < 9; i++) mk('', {
         '--x': rnd(6, 92).toFixed(1) + '%', '--y': rnd(8, 88).toFixed(1) + '%',
         '--s': rnd(8, 22).toFixed(0) + 'px', '--t': rnd(1.6, 3.2).toFixed(2) + 's',
         '--delay': (-rnd(0, 3)).toFixed(2) + 's'
       });
     } else if (kind === 'fire') {
-      for (let i = 0; i < 8; i++) mk('flame', {
-        '--x': (i * 13 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(22, 34).toFixed(0) + '%',
+      for (let i = 0; i < 5; i++) mk('flame', {
+        '--x': (i * 21 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(30, 42).toFixed(0) + '%',
         '--h': rnd(34, 52).toFixed(0) + '%', '--t': rnd(.5, .9).toFixed(2) + 's',
         '--delay': (-rnd(0, 1)).toFixed(2) + 's'
       });
-      for (let i = 0; i < 14; i++) mk('ember', {
+      for (let i = 0; i < 8; i++) mk('ember', {
         '--x': rnd(10, 90).toFixed(1) + '%', '--s': rnd(2, 5).toFixed(1) + 'px',
         '--t': rnd(2.2, 4).toFixed(1) + 's', '--delay': (-rnd(0, 4)).toFixed(1) + 's',
         '--dx': rnd(-50, 50).toFixed(0) + 'px', '--o': rnd(.5, .95).toFixed(2)

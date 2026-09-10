@@ -762,14 +762,16 @@ body::before {
 .product__tag { z-index: 4; }
 .fx { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .6s var(--ease); overflow: hidden; }
 .product:hover .fx, .product.is-fx .fx { opacity: 1; }
-.fx i { position: absolute; display: block; }
+.fx i { position: absolute; display: block; animation-play-state: paused; will-change: transform, opacity; }
+.fx::before, .fx::after { animation-play-state: paused; }
+.product:hover .fx i, .product.is-fx .fx i, .product:hover .fx::before, .product.is-fx .fx::before, .product:hover .fx::after, .product.is-fx .fx::after { animation-play-state: running; }
 
 /* Tradicional: hojas de perejil + sello del abuelo */
 .fx--herb i {
   left: var(--x); bottom: -8%; width: var(--s); height: calc(var(--s) * .55);
   background: linear-gradient(135deg, #a8e06a, #5aa332);
   border-radius: 100% 0 100% 0;
-  opacity: 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5));
+  opacity: 0;
   animation: leaf var(--t) ease-in-out var(--delay) infinite;
 }
 @keyframes leaf {
@@ -828,7 +830,7 @@ body::before {
   left: var(--x); bottom: -14%; width: var(--w); height: var(--h);
   background: radial-gradient(ellipse at 50% 100%, #fff4b8 0%, #ffb340 22%, #ff5a1f 48%, rgba(209,38,31,.5) 66%, transparent 80%);
   border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
-  filter: blur(7px); mix-blend-mode: screen; transform-origin: 50% 100%;
+  filter: blur(5px); mix-blend-mode: screen; transform-origin: 50% 100%;
   animation: flame var(--t) ease-in-out var(--delay) infinite alternate;
 }
 @keyframes flame {
@@ -847,8 +849,7 @@ body::before {
   10%  { opacity: var(--o); }
   100% { transform: translate3d(var(--dx), -420px, 0) scale(.2); opacity: 0; }
 }
-.product--picante:hover, .product--picante.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 60px -10px rgba(227,58,44,.45); animation: fireGlow 1.6s ease-in-out infinite; }
-@keyframes fireGlow { 50% { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 80px -6px rgba(255,90,31,.6); } }
+.product--picante:hover, .product--picante.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 70px -8px rgba(255,90,31,.5); }
 .product--picante:hover .product__media img, .product--picante.is-fx .product__media img { filter: saturate(1.2) contrast(1.05); }
 .product--picante:hover .heat__dots i.on, .product--picante.is-fx .heat__dots i.on { animation: heatPulse .8s ease-in-out infinite; }
 .product--premium:hover, .product--premium.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 60px -12px rgba(230,201,135,.4); }
@@ -856,7 +857,6 @@ body::before {
 
 @media (prefers-reduced-motion: reduce) {
   .fx, .fx-stamp { display: none; }
-  .product--picante:hover, .product--picante.is-fx { animation: none; }
 }
 
 /* ---------- Ritual ---------- */
