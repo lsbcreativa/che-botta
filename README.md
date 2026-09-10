@@ -11,7 +11,7 @@ css/styles.css      Estilos (paleta, tipografía, layout, responsive)
 js/main.js          Interacciones (header, menú móvil, reveal, parallax, enlaces de WhatsApp)
 assets/logo/        Logo verde, logo blanco, retrato de Don Carlos, favicon
 assets/fotos/       Fotos reales: Papapa brindando, con sus nietos y con Joaquín
-assets/productos/   Los frascos: tradicional (foto real), premium, carretillero (picante.webp)
+assets/productos/   Los 3 frascos: tradicional, premium, carretillero
 assets/ambiente/    Imágenes de parrilla para fondos
 ```
 

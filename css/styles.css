@@ -713,7 +713,7 @@ body::before {
 .product:hover .heat__dots i.on { animation: heatPulse 1.2s ease-in-out infinite; }
 @keyframes heatPulse { 50% { transform: scale(1.35); } }
 .product--premium { --accent: var(--oro); }
-.product--picante { --accent: var(--brasa); }
+.product--picante { --accent: #e33a2c; }
 .product--extremo { --accent: var(--rojo); }
 .product__media { position: relative; aspect-ratio: 1; overflow: hidden; background: #0a0908; }
 .product__media img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
@@ -732,7 +732,7 @@ body::before {
   backdrop-filter: blur(6px);
 }
 .product__tag--gold { color: var(--oro-2); border-color: rgba(201,163,90,.5); }
-.product__tag--fire { color: var(--brasa); border-color: rgba(232,98,31,.5); }
+.product__tag--fire { color: #ff6a5c; border-color: rgba(227,58,44,.55); }
 .product__tag--red { color: #ff5a52; border-color: rgba(209,38,31,.6); }
 .product__body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
 .product h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 500; color: var(--crema-3); line-height: 1.15; }
