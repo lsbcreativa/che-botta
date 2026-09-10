@@ -755,6 +755,110 @@ body::before {
 .productos__note a { color: var(--verde); border-bottom: 1px solid rgba(112,191,68,.4); transition: border-color .3s; }
 .productos__note a:hover { border-color: var(--verde); }
 
+/* ---------- Efectos por producto ---------- */
+.product__media { isolation: isolate; }
+.product__media img { position: relative; z-index: 0; }
+.product__media::after { z-index: 1; }
+.product__tag { z-index: 4; }
+.fx { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transition: opacity .6s var(--ease); overflow: hidden; }
+.product:hover .fx, .product.is-fx .fx { opacity: 1; }
+.fx i { position: absolute; display: block; }
+
+/* Tradicional: hojas de perejil + sello del abuelo */
+.fx--herb i {
+  left: var(--x); bottom: -8%; width: var(--s); height: calc(var(--s) * .55);
+  background: linear-gradient(135deg, #a8e06a, #5aa332);
+  border-radius: 100% 0 100% 0;
+  opacity: 0; filter: drop-shadow(0 2px 3px rgba(0,0,0,.5));
+  animation: leaf var(--t) ease-in-out var(--delay) infinite;
+}
+@keyframes leaf {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); opacity: 0; }
+  12%  { opacity: .95; }
+  50%  { transform: translate3d(var(--dx), -55%, 0) rotate(160deg); opacity: .9; }
+  100% { transform: translate3d(calc(var(--dx) * -.6), -115%, 0) rotate(340deg); opacity: 0; }
+}
+.fx-stamp {
+  position: absolute; right: .9rem; top: .9rem; z-index: 3; pointer-events: none;
+  width: 96px; height: 96px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  background: rgba(15,13,11,.78); border: 2px solid var(--verde);
+  box-shadow: 0 0 0 4px rgba(15,13,11,.6), 0 14px 30px -10px rgba(0,0,0,.9), inset 0 0 0 1px rgba(112,191,68,.35);
+  opacity: 0; transform: scale(1.8) rotate(-24deg);
+  transition: opacity .35s var(--ease), transform .45s cubic-bezier(.2, 1.4, .4, 1);
+}
+.fx-stamp img { width: 40px; height: auto; border-radius: 50%; background: #fff; padding: 1px; }
+.fx-stamp span { font-size: .46rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--verde); line-height: 1; white-space: nowrap; }
+.product:hover .fx-stamp, .product.is-fx .fx-stamp { opacity: 1; transform: scale(1) rotate(-10deg); }
+
+/* Premium: lámina dorada + destellos */
+.fx--gold::before {
+  content: ""; position: absolute; inset: -20% -60%;
+  background: linear-gradient(100deg, transparent 38%, rgba(255,240,194,.22) 46%, rgba(255,255,255,.55) 50%, rgba(255,240,194,.22) 54%, transparent 62%);
+  transform: translateX(-70%); mix-blend-mode: screen;
+}
+.product:hover .fx--gold::before, .product.is-fx .fx--gold::before { animation: foil 2.6s var(--ease) infinite; }
+@keyframes foil { 0% { transform: translateX(-70%); } 60%, 100% { transform: translateX(70%); } }
+.fx--gold::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(45% 40% at 50% 58%, rgba(230,201,135,.28), transparent 70%);
+  mix-blend-mode: screen; animation: goldGlow 2.4s ease-in-out infinite;
+}
+@keyframes goldGlow { 50% { opacity: .45; } }
+.fx--gold i {
+  left: var(--x); top: var(--y); width: var(--s); height: var(--s);
+  background: radial-gradient(circle, #fff8e1 0%, #e6c987 45%, transparent 70%);
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  transform: scale(0); opacity: 0;
+  animation: sparkle var(--t) ease-in-out var(--delay) infinite;
+}
+@keyframes sparkle {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(45deg); opacity: 1; }
+}
+
+/* Carretillero: llamas, brasas y resplandor */
+.fx--fire::before {
+  content: ""; position: absolute; left: -10%; right: -10%; bottom: -5%; height: 55%;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(255,90,31,.48), rgba(209,38,31,.22) 50%, transparent 75%);
+  animation: heat 1.6s ease-in-out infinite;
+}
+@keyframes heat { 50% { opacity: .7; transform: scaleX(1.06); } }
+.fx--fire .flame {
+  left: var(--x); bottom: -14%; width: var(--w); height: var(--h);
+  background: radial-gradient(ellipse at 50% 100%, #fff4b8 0%, #ffb340 22%, #ff5a1f 48%, rgba(209,38,31,.5) 66%, transparent 80%);
+  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
+  filter: blur(7px); mix-blend-mode: screen; transform-origin: 50% 100%;
+  animation: flame var(--t) ease-in-out var(--delay) infinite alternate;
+}
+@keyframes flame {
+  0%   { transform: scale(1, .82) translateX(0); opacity: .85; }
+  35%  { transform: scale(.92, 1.12) translateX(-4%); opacity: 1; }
+  70%  { transform: scale(1.06, .95) translateX(3%); opacity: .9; }
+  100% { transform: scale(.96, 1.18) translateX(-2%); opacity: 1; }
+}
+.fx--fire .ember {
+  left: var(--x); bottom: 0; width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, #ffd39a 0%, #ff7a2a 45%, transparent 70%);
+  opacity: 0; animation: cardEmber var(--t) linear var(--delay) infinite;
+}
+@keyframes cardEmber {
+  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
+  10%  { opacity: var(--o); }
+  100% { transform: translate3d(var(--dx), -420px, 0) scale(.2); opacity: 0; }
+}
+.product--picante:hover, .product--picante.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 60px -10px rgba(227,58,44,.45); animation: fireGlow 1.6s ease-in-out infinite; }
+@keyframes fireGlow { 50% { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 80px -6px rgba(255,90,31,.6); } }
+.product--picante:hover .product__media img, .product--picante.is-fx .product__media img { filter: saturate(1.2) contrast(1.05); }
+.product--picante:hover .heat__dots i.on, .product--picante.is-fx .heat__dots i.on { animation: heatPulse .8s ease-in-out infinite; }
+.product--premium:hover, .product--premium.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 60px -12px rgba(230,201,135,.4); }
+.product:hover, .product.is-fx { border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+
+@media (prefers-reduced-motion: reduce) {
+  .fx, .fx-stamp { display: none; }
+  .product--picante:hover, .product--picante.is-fx { animation: none; }
+}
+
 /* ---------- Ritual ---------- */
 .ritual { overflow: hidden; isolation: isolate; }
 .ritual__bg { position: absolute; inset: 0; z-index: -1; }

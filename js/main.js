@@ -150,6 +150,52 @@
     window.addEventListener('resize', update);
   }
 
+  /* ---- Efectos por producto (hojas, destellos, fuego) ---- */
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  document.querySelectorAll('[data-fx]').forEach(box => {
+    const kind = box.dataset.fx;
+    const frag = document.createDocumentFragment();
+    const mk = (cls, vars) => {
+      const el = document.createElement('i');
+      if (cls) el.className = cls;
+      Object.entries(vars).forEach(([k, v]) => el.style.setProperty(k, v));
+      frag.appendChild(el);
+    };
+    if (kind === 'herb') {
+      for (let i = 0; i < 12; i++) mk('', {
+        '--x': rnd(5, 95).toFixed(1) + '%', '--s': rnd(8, 16).toFixed(0) + 'px',
+        '--t': rnd(5, 9).toFixed(1) + 's', '--delay': (-rnd(0, 9)).toFixed(1) + 's',
+        '--dx': rnd(-40, 40).toFixed(0) + 'px'
+      });
+    } else if (kind === 'gold') {
+      for (let i = 0; i < 14; i++) mk('', {
+        '--x': rnd(6, 92).toFixed(1) + '%', '--y': rnd(8, 88).toFixed(1) + '%',
+        '--s': rnd(8, 22).toFixed(0) + 'px', '--t': rnd(1.6, 3.2).toFixed(2) + 's',
+        '--delay': (-rnd(0, 3)).toFixed(2) + 's'
+      });
+    } else if (kind === 'fire') {
+      for (let i = 0; i < 8; i++) mk('flame', {
+        '--x': (i * 13 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(22, 34).toFixed(0) + '%',
+        '--h': rnd(34, 52).toFixed(0) + '%', '--t': rnd(.5, .9).toFixed(2) + 's',
+        '--delay': (-rnd(0, 1)).toFixed(2) + 's'
+      });
+      for (let i = 0; i < 14; i++) mk('ember', {
+        '--x': rnd(10, 90).toFixed(1) + '%', '--s': rnd(2, 5).toFixed(1) + 'px',
+        '--t': rnd(2.2, 4).toFixed(1) + 's', '--delay': (-rnd(0, 4)).toFixed(1) + 's',
+        '--dx': rnd(-50, 50).toFixed(0) + 'px', '--o': rnd(.5, .95).toFixed(2)
+      });
+    }
+    box.appendChild(frag);
+  });
+
+  /* En pantallas táctiles, los efectos se encienden cuando la tarjeta está a la vista */
+  if (!finePointer && !reduceMotion && 'IntersectionObserver' in window) {
+    const fxo = new IntersectionObserver(entries => {
+      entries.forEach(e => e.target.classList.toggle('is-fx', e.isIntersecting));
+    }, { threshold: 0.55 });
+    document.querySelectorAll('.product').forEach(c => fxo.observe(c));
+  }
+
   /* ---- Tilt 3D en tarjetas de producto ---- */
   if (finePointer && !reduceMotion) {
     document.querySelectorAll('[data-tilt]').forEach(card => {
