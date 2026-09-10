@@ -1101,6 +1101,7 @@ body::before {
   .pilares { grid-template-columns: 1fr; }
   .homenaje__grid { grid-template-columns: 1fr; gap: 3rem; }
   .homenaje__portrait { width: min(70%, 320px); }
+  .homenaje__bg::after { font-size: 17.5vw; right: auto; left: 50%; transform: translateX(-50%); top: .6rem; letter-spacing: -.02em; -webkit-text-stroke: 1px rgba(244,237,220,.09); }
   .homenaje__copy { text-align: center; }
   .homenaje__copy .prose p { text-align-last: center; }
   .homenaje__copy .eyebrow { justify-content: center; }
