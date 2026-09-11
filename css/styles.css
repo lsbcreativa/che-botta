@@ -1006,6 +1006,37 @@ body::before {
   border: 1px solid rgba(112,191,68,.5); background: rgba(112,191,68,.08);
 }
 
+/* ---------- Preguntas frecuentes ---------- */
+.faq__list { max-width: 780px; margin-inline: auto; display: grid; gap: 1rem; }
+.faq__item {
+  background: var(--carbon-2); border: 1px solid var(--linea); border-radius: var(--radius);
+  padding: 0; overflow: hidden; transition: border-color .3s, background .3s;
+}
+.faq__item[open] { border-color: rgba(112,191,68,.4); background: var(--carbon-3); }
+.faq__q {
+  list-style: none; cursor: pointer; user-select: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 1.3rem 1.6rem; font-family: var(--serif); font-size: 1.15rem; font-weight: 600; color: var(--crema);
+  transition: color .3s;
+}
+.faq__q::-webkit-details-marker { display: none; }
+.faq__q::after {
+  content: ""; flex: none; width: 11px; height: 11px;
+  border-right: 2px solid var(--verde); border-bottom: 2px solid var(--verde);
+  transform: rotate(45deg); transition: transform .35s var(--ease);
+}
+.faq__item[open] .faq__q::after { transform: rotate(-135deg); }
+.faq__item:hover .faq__q { color: var(--verde); }
+.faq__a { padding: 0 1.6rem 1.5rem; }
+.faq__a p { color: var(--crema-2); font-size: .98rem; line-height: 1.65; text-align: justify; hyphens: auto; -webkit-hyphens: auto; }
+.faq__a a { color: var(--verde); border-bottom: 1px solid rgba(112,191,68,.4); transition: border-color .3s; }
+.faq__a a:hover { border-color: var(--verde); }
+
+@media (max-width: 560px) {
+  .faq__q { padding: 1.1rem 1.2rem; font-size: 1.02rem; }
+  .faq__a { padding: 0 1.2rem 1.2rem; }
+}
+
 /* ---------- Contacto ---------- */
 .contacto { padding-bottom: clamp(4rem, 8vw, 7rem); }
 .contacto__card {
