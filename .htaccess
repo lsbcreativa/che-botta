@@ -1,0 +1,49 @@
+# ============================================================
+# Che Botta — seguridad y cabeceras HTTP (Apache / Hostinger)
+# Este archivo solo funciona en Apache (Hostinger). GitHub Pages
+# lo ignora por completo: ahí la única protección posible es el
+# <meta http-equiv="Content-Security-Policy"> dentro de index.html.
+# ============================================================
+
+# --- Fuerza HTTPS ---
+# Si en el hPanel de Hostinger ya activaste "Forzar HTTPS", esto es
+# redundante e inofensivo (no genera bucles de redirección).
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+</IfModule>
+
+# --- Cabeceras de seguridad ---
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "DENY"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=(), midi=(), screen-wake-lock=()"
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+  # Actívala recién cuando estés seguro de que el HTTPS quedó estable
+  # (no la borres una vez que la actives: es difícil de revertir).
+  Header always set Strict-Transport-Security "max-age=15768000; includeSubDomains"
+</IfModule>
+
+# --- Evita que se pueda listar el contenido de una carpeta ---
+Options -Indexes
+
+# --- Bloquea el acceso directo a archivos ocultos (.env, .git*, etc.) ---
+<IfModule mod_authz_core.c>
+  <FilesMatch "^\.">
+    Require all denied
+  </FilesMatch>
+</IfModule>
+<IfModule !mod_authz_core.c>
+  <FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+  </FilesMatch>
+</IfModule>
+
+# --- Por si alguna vez se sube por error la carpeta .git completa ---
+RedirectMatch 404 "/\.git($|/)"
+
+# --- No informa la versión del servidor ---
+ServerSignature Off
