@@ -859,11 +859,20 @@ body::before {
   .fx, .fx-stamp { display: none; }
 }
 
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.product__corner {
+  position: absolute; top: 0; right: 0; width: 150px; height: 150px; overflow: hidden; z-index: 5; pointer-events: none;
+}
 .product__ribbon {
-  position: absolute; top: 26px; right: -44px; z-index: 5; transform: rotate(45deg);
-  padding: .42rem 3.2rem; font-size: .62rem; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
-  background: linear-gradient(100deg, #b8924a, #e6c987 50%, #b8924a); color: #1a1408;
-  box-shadow: 0 10px 24px -8px rgba(0,0,0,.8);
+  position: absolute; top: 32px; right: -50px; width: 200px; transform: rotate(45deg);
+  padding: .5rem 0; text-align: center;
+  font-size: .6rem; font-weight: 800; letter-spacing: .22em; text-transform: uppercase; line-height: 1;
+  background: linear-gradient(100deg, #a8843f 0%, #e6c987 45%, #fff0c2 52%, #e6c987 60%, #a8843f 100%);
+  color: #1a1408;
+  box-shadow: 0 8px 18px -6px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.35);
+}
+.product__ribbon::before {
+  content: ""; position: absolute; inset: 3px; border-top: 1px dashed rgba(26,20,8,.45); border-bottom: 1px dashed rgba(26,20,8,.45);
 }
 .product--soon .product__media img { filter: saturate(.85) brightness(.92); }
 
