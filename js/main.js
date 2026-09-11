@@ -197,16 +197,14 @@
         '--dx': rnd(-30, 30).toFixed(0) + 'px', '--o': rnd(.45, .9).toFixed(2)
       });
     } else if (kind === 'fire') {
-      for (let i = 0; i < 9; i++) {
-        const tongue = document.createElement('i');
-        tongue.className = 'tongue';
-        const big = i % 3 === 1;
-        [['--x', (i * 11 - 6 + rnd(-4, 4)).toFixed(1) + '%'], ['--s', (big ? rnd(30, 44) : rnd(18, 28)).toFixed(0) + '%'],
-         ['--t', rnd(.4, .85).toFixed(2) + 's'], ['--delay', (-rnd(0, 1)).toFixed(2) + 's'], ['--z', big ? 1 : 2]]
-          .forEach(([k, v]) => tongue.style.setProperty(k, v));
-        for (let k = 0; k < 3; k++) tongue.appendChild(document.createElement('b'));
-        frag.appendChild(tongue);
-      }
+      const plume = (cls, xMin, xMax, sMin, sMax, tMin, tMax) => mk('plume ' + cls, {
+        '--x': rnd(xMin, xMax).toFixed(1) + '%', '--s': rnd(sMin, sMax).toFixed(0) + 'px',
+        '--t': rnd(tMin, tMax).toFixed(2) + 's', '--delay': (-rnd(0, 2)).toFixed(2) + 's',
+        '--dx': rnd(-14, 14).toFixed(0) + 'px'
+      });
+      for (let i = 0; i < 10; i++) plume('plume--outer', 4, 96, 70, 120, 1.1, 1.7);
+      for (let i = 0; i < 9; i++) plume('plume--mid', 14, 86, 50, 90, .9, 1.4);
+      for (let i = 0; i < 7; i++) plume('plume--core', 28, 72, 30, 56, .7, 1.1);
       for (let i = 0; i < 8; i++) mk('ember', {
         '--x': rnd(10, 90).toFixed(1) + '%', '--s': rnd(2, 5).toFixed(1) + 'px',
         '--t': rnd(2.2, 4).toFixed(1) + 's', '--delay': (-rnd(0, 4)).toFixed(1) + 's',

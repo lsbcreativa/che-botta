@@ -867,7 +867,7 @@ body::before {
 /* Carretillero: llamas, brasas, humo y resplandor */
 .fx--fire::before {
   content: ""; position: absolute; left: -10%; right: -10%; bottom: -6%; height: 58%;
-  background: radial-gradient(60% 100% at 50% 100%, rgba(255,110,31,.5), rgba(209,38,31,.22) 50%, transparent 76%);
+  background: radial-gradient(60% 100% at 50% 100%, rgba(255,110,31,.55), rgba(209,38,31,.25) 50%, transparent 76%);
   animation: heat 1.4s ease-in-out infinite;
 }
 .fx--fire::after {
@@ -877,42 +877,27 @@ body::before {
 }
 @keyframes heat { 50% { opacity: .65; transform: scaleX(1.05) scaleY(1.08); } }
 
-.fx--fire .tongue {
-  position: absolute; bottom: -3%; left: var(--x); width: var(--s); aspect-ratio: 1 / 2.1; z-index: var(--z, 1);
+.fx--fire .plume {
+  left: var(--x); bottom: -6%; width: var(--s); height: calc(var(--s) * 1.35);
+  margin-left: calc(var(--s) * -.5); border-radius: 50%;
   transform-origin: 50% 100%;
-  animation: flick var(--t) ease-in-out var(--delay) infinite alternate;
+  opacity: 0; animation: rise var(--t) ease-out var(--delay) infinite;
 }
-.fx--fire .tongue b {
-  position: absolute; left: 50%; bottom: 0; width: 74%; aspect-ratio: 1;
-  transform: translateX(-50%) rotate(45deg); transform-origin: 50% 50%;
-  border-radius: 0 55% 55% 55%;
+.fx--fire .plume--outer {
+  background: radial-gradient(50% 55% at 50% 60%, rgba(255,120,40,.85) 0%, rgba(235,60,25,.55) 38%, rgba(200,30,20,.22) 66%, rgba(180,20,20,0) 100%);
 }
-.fx--fire .tongue b:nth-child(1) {
-  background: radial-gradient(100% 100% at 100% 100%, rgba(255,130,45,.98) 0%, rgba(240,70,30,.9) 40%, rgba(210,35,22,.6) 68%, rgba(190,25,20,0) 92%);
-  box-shadow: 0 0 22px 6px rgba(255,90,31,.22);
-  animation: lick .38s ease-in-out infinite alternate;
+.fx--fire .plume--mid {
+  background: radial-gradient(50% 55% at 50% 60%, rgba(255,190,70,.95) 0%, rgba(255,120,35,.6) 40%, rgba(240,70,25,.18) 70%, rgba(240,70,25,0) 100%);
 }
-.fx--fire .tongue b:nth-child(2) {
-  width: 50%; bottom: 3%;
-  background: radial-gradient(100% 100% at 100% 100%, #ffd05a 0%, rgba(255,150,45,.95) 42%, rgba(255,110,31,.55) 72%, rgba(255,106,31,0) 92%);
-  animation: lick .31s ease-in-out -.15s infinite alternate;
+.fx--fire .plume--core {
+  background: radial-gradient(50% 55% at 50% 60%, rgba(255,250,215,1) 0%, rgba(255,220,120,.85) 30%, rgba(255,150,50,.35) 62%, rgba(255,150,50,0) 100%);
 }
-.fx--fire .tongue b:nth-child(3) {
-  width: 28%; bottom: 5%;
-  background: radial-gradient(100% 100% at 100% 100%, #fffbe0 0%, rgba(255,235,160,.95) 45%, rgba(255,209,102,.45) 74%, rgba(255,209,102,0) 92%);
-  animation: lick .27s ease-in-out -.08s infinite alternate;
+@keyframes rise {
+  0%   { transform: translate3d(0, 0, 0) scale(.9, .7); opacity: 0; }
+  12%  { opacity: .95; }
+  45%  { transform: translate3d(var(--dx), -55%, 0) scale(1, 1.25); opacity: .85; }
+  100% { transform: translate3d(calc(var(--dx) * 1.8), -150%, 0) scale(.35, 1); opacity: 0; }
 }
-@keyframes flick {
-  0%   { transform: scale(1, .86) skewX(0deg) translateX(0); }
-  30%  { transform: scale(.94, 1.1) skewX(-5deg) translateX(-2%); }
-  65%  { transform: scale(1.05, .95) skewX(4deg) translateX(2%); }
-  100% { transform: scale(.97, 1.16) skewX(-3deg) translateX(-1%); }
-}
-@keyframes lick {
-  from { transform: translateX(-50%) rotate(45deg) scale(1); }
-  to   { transform: translateX(-52%) rotate(41deg) scale(1.06, 1.12); }
-}
-
 .fx--fire .ember {
   left: var(--x); bottom: 0; width: var(--s); height: var(--s); border-radius: 50%;
   background: radial-gradient(circle, #fff1c2 0%, #ffb347 35%, #ff5a1f 60%, transparent 72%);
