@@ -180,10 +180,21 @@
         '--dx': rnd(-40, 40).toFixed(0) + 'px'
       });
     } else if (kind === 'gold') {
-      for (let i = 0; i < 9; i++) mk('', {
-        '--x': rnd(6, 92).toFixed(1) + '%', '--y': rnd(8, 88).toFixed(1) + '%',
-        '--s': rnd(8, 22).toFixed(0) + 'px', '--t': rnd(1.6, 3.2).toFixed(2) + 's',
-        '--delay': (-rnd(0, 3)).toFixed(2) + 's'
+      mk('halo', { '--delay': '0s' });
+      mk('halo', { '--delay': '-1.6s' });
+      for (let i = 0; i < 7; i++) {
+        const g = document.createElement('i');
+        g.className = 'glint';
+        [['--x', rnd(8, 92).toFixed(1) + '%'], ['--y', rnd(10, 85).toFixed(1) + '%'],
+         ['--s', rnd(18, 42).toFixed(0) + 'px'], ['--t', rnd(2.2, 4).toFixed(2) + 's'],
+         ['--delay', (-rnd(0, 4)).toFixed(2) + 's']].forEach(([k, v]) => g.style.setProperty(k, v));
+        g.appendChild(document.createElement('i'));
+        frag.appendChild(g);
+      }
+      for (let i = 0; i < 10; i++) mk('dust', {
+        '--x': rnd(5, 95).toFixed(1) + '%', '--s': rnd(2, 4).toFixed(1) + 'px',
+        '--t': rnd(5, 9).toFixed(1) + 's', '--delay': (-rnd(0, 9)).toFixed(1) + 's',
+        '--dx': rnd(-30, 30).toFixed(0) + 'px', '--o': rnd(.45, .9).toFixed(2)
       });
     } else if (kind === 'fire') {
       for (let i = 0; i < 9; i++) {

@@ -794,30 +794,74 @@ body::before {
 .fx-stamp span { font-size: .5rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--verde); line-height: 1.2; text-align: center; white-space: nowrap; }
 .product:hover .fx-stamp, .product.is-fx .fx-stamp { opacity: 1; transform: scale(1) rotate(-10deg); }
 
-/* Premium: lámina dorada + destellos */
+/* Premium: lámina dorada, glints, polvo de oro y halo */
 .fx--gold::before {
   content: ""; position: absolute; inset: -20% -40%;
-  background: linear-gradient(100deg, transparent 40%, rgba(255,240,194,.14) 47%, rgba(255,255,255,.34) 50%, rgba(255,240,194,.14) 53%, transparent 60%);
+  background:
+    linear-gradient(100deg, transparent 44%, rgba(255,255,255,.42) 50%, transparent 56%),
+    linear-gradient(100deg, transparent 30%, rgba(255,240,194,.16) 46%, rgba(255,240,194,.22) 50%, rgba(255,240,194,.16) 54%, transparent 70%);
   transform: translateX(-70%);
 }
-.product:hover .fx--gold::before, .product.is-fx .fx--gold::before { animation: foil 2.6s var(--ease) infinite; }
-@keyframes foil { 0% { transform: translateX(-70%); } 60%, 100% { transform: translateX(70%); } }
+.product:hover .fx--gold::before, .product.is-fx .fx--gold::before { animation: foil 3.2s cubic-bezier(.4, 0, .2, 1) infinite; }
+@keyframes foil { 0% { transform: translateX(-70%); } 55%, 100% { transform: translateX(70%); } }
 .fx--gold::after {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(45% 40% at 50% 58%, rgba(230,201,135,.28), transparent 70%);
-  animation: goldGlow 2.4s ease-in-out infinite;
+  background:
+    radial-gradient(50% 42% at 50% 60%, rgba(230,201,135,.26), transparent 70%),
+    radial-gradient(40% 30% at 12% 8%, rgba(255,240,194,.14), transparent 70%);
+  animation: goldGlow 2.6s ease-in-out infinite;
 }
-@keyframes goldGlow { 50% { opacity: .45; } }
-.fx--gold i {
+@keyframes goldGlow { 50% { opacity: .55; } }
+.fx--gold .halo {
+  left: 50%; top: 58%; width: 46%; aspect-ratio: 1; border-radius: 50%;
+  border: 1px solid rgba(230,201,135,.55);
+  box-shadow: 0 0 0 1px rgba(230,201,135,.12), inset 0 0 30px rgba(230,201,135,.12);
+  transform: translate(-50%, -50%) scale(.6); opacity: 0;
+  animation: halo 3.2s ease-out var(--delay, 0s) infinite;
+}
+@keyframes halo {
+  0%   { transform: translate(-50%, -50%) scale(.55); opacity: 0; }
+  15%  { opacity: .9; }
+  100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+.fx--gold .glint {
   left: var(--x); top: var(--y); width: var(--s); height: var(--s);
-  background: radial-gradient(circle, #fff8e1 0%, #e6c987 45%, transparent 70%);
-  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
-  transform: scale(0); opacity: 0;
-  animation: sparkle var(--t) ease-in-out var(--delay) infinite;
+  transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0;
+  animation: glint var(--t) ease-in-out var(--delay) infinite;
 }
-@keyframes sparkle {
-  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
-  50% { transform: scale(1) rotate(45deg); opacity: 1; }
+.fx--gold .glint::before, .fx--gold .glint::after {
+  content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  background: linear-gradient(90deg, transparent, #fff8e1 30%, #fff 50%, #fff8e1 70%, transparent);
+  border-radius: 999px;
+}
+.fx--gold .glint::before { width: 100%; height: 12%; }
+.fx--gold .glint::after { width: 12%; height: 100%; background: linear-gradient(180deg, transparent, #fff8e1 30%, #fff 50%, #fff8e1 70%, transparent); }
+.fx--gold .glint i {
+  position: absolute; left: 50%; top: 50%; width: 32%; height: 32%; transform: translate(-50%, -50%);
+  border-radius: 50%; background: radial-gradient(circle, #fff 0%, #ffe9a8 45%, transparent 70%);
+  box-shadow: 0 0 10px 2px rgba(255,236,170,.6);
+}
+@keyframes glint {
+  0%, 100% { transform: translate(-50%, -50%) scale(0) rotate(0deg); opacity: 0; }
+  45%, 55% { transform: translate(-50%, -50%) scale(1) rotate(45deg); opacity: 1; }
+}
+.fx--gold .dust {
+  left: var(--x); bottom: -4%; width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, #fff3c4 0%, #e6c987 50%, transparent 72%);
+  opacity: 0; animation: dust var(--t) linear var(--delay) infinite;
+}
+@keyframes dust {
+  0%   { transform: translate3d(0, 0, 0); opacity: 0; }
+  12%  { opacity: var(--o); }
+  50%  { transform: translate3d(var(--dx), -180px, 0); opacity: calc(var(--o) * .7); }
+  100% { transform: translate3d(calc(var(--dx) * -.5), -380px, 0); opacity: 0; }
+}
+
+/* Botón desactivado (producto próximamente) */
+.product__cta:disabled, .product__cta[aria-disabled="true"] {
+  opacity: .55; cursor: not-allowed; pointer-events: none;
+  border-style: dashed; color: var(--crema-3); border-color: rgba(244,237,220,.25); background: transparent;
+  transform: none; box-shadow: none;
 }
 
 /* Carretillero: llamas, brasas, humo y resplandor */
