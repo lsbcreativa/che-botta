@@ -820,35 +820,76 @@ body::before {
   50% { transform: scale(1) rotate(45deg); opacity: 1; }
 }
 
-/* Carretillero: llamas, brasas y resplandor */
+/* Carretillero: llamas, brasas, humo y resplandor */
 .fx--fire::before {
-  content: ""; position: absolute; left: -10%; right: -10%; bottom: -5%; height: 55%;
-  background: radial-gradient(60% 100% at 50% 100%, rgba(255,90,31,.48), rgba(209,38,31,.22) 50%, transparent 75%);
-  animation: heat 1.6s ease-in-out infinite;
+  content: ""; position: absolute; left: -10%; right: -10%; bottom: -6%; height: 58%;
+  background: radial-gradient(60% 100% at 50% 100%, rgba(255,110,31,.5), rgba(209,38,31,.22) 50%, transparent 76%);
+  animation: heat 1.4s ease-in-out infinite;
 }
-@keyframes heat { 50% { opacity: .7; transform: scaleX(1.06); } }
-.fx--fire .flame {
-  left: var(--x); bottom: -14%; width: var(--w); height: var(--h);
-  background: radial-gradient(ellipse at 50% 100%, rgba(255,244,184,.95) 0%, rgba(255,179,64,.85) 20%, rgba(255,90,31,.7) 42%, rgba(209,38,31,.35) 60%, transparent 74%);
-  border-radius: 50% 50% 35% 35% / 60% 60% 40% 40%;
-  transform-origin: 50% 100%; opacity: .9;
-  animation: flame var(--t) ease-in-out var(--delay) infinite alternate;
+.fx--fire::after {
+  content: ""; position: absolute; left: -5%; right: -5%; bottom: -4%; height: 34%;
+  background: linear-gradient(180deg, transparent, rgba(255,120,40,.22) 60%, rgba(255,190,80,.4));
+  animation: heat 0.9s ease-in-out -0.4s infinite;
 }
-@keyframes flame {
-  0%   { transform: scale(1, .82) translateX(0); opacity: .85; }
-  35%  { transform: scale(.92, 1.12) translateX(-4%); opacity: 1; }
-  70%  { transform: scale(1.06, .95) translateX(3%); opacity: .9; }
-  100% { transform: scale(.96, 1.18) translateX(-2%); opacity: 1; }
+@keyframes heat { 50% { opacity: .65; transform: scaleX(1.05) scaleY(1.08); } }
+
+.fx--fire .tongue {
+  position: absolute; bottom: -3%; left: var(--x); width: var(--s); aspect-ratio: 1 / 2.1; z-index: var(--z, 1);
+  transform-origin: 50% 100%;
+  animation: flick var(--t) ease-in-out var(--delay) infinite alternate;
 }
+.fx--fire .tongue b {
+  position: absolute; left: 50%; bottom: 0; width: 74%; aspect-ratio: 1;
+  transform: translateX(-50%) rotate(45deg); transform-origin: 50% 50%;
+  border-radius: 0 55% 55% 55%;
+}
+.fx--fire .tongue b:nth-child(1) {
+  background: radial-gradient(100% 100% at 100% 100%, rgba(255,130,45,.98) 0%, rgba(240,70,30,.9) 40%, rgba(210,35,22,.6) 68%, rgba(190,25,20,0) 92%);
+  box-shadow: 0 0 22px 6px rgba(255,90,31,.22);
+  animation: lick .38s ease-in-out infinite alternate;
+}
+.fx--fire .tongue b:nth-child(2) {
+  width: 50%; bottom: 3%;
+  background: radial-gradient(100% 100% at 100% 100%, #ffd05a 0%, rgba(255,150,45,.95) 42%, rgba(255,110,31,.55) 72%, rgba(255,106,31,0) 92%);
+  animation: lick .31s ease-in-out -.15s infinite alternate;
+}
+.fx--fire .tongue b:nth-child(3) {
+  width: 28%; bottom: 5%;
+  background: radial-gradient(100% 100% at 100% 100%, #fffbe0 0%, rgba(255,235,160,.95) 45%, rgba(255,209,102,.45) 74%, rgba(255,209,102,0) 92%);
+  animation: lick .27s ease-in-out -.08s infinite alternate;
+}
+@keyframes flick {
+  0%   { transform: scale(1, .86) skewX(0deg) translateX(0); }
+  30%  { transform: scale(.94, 1.1) skewX(-5deg) translateX(-2%); }
+  65%  { transform: scale(1.05, .95) skewX(4deg) translateX(2%); }
+  100% { transform: scale(.97, 1.16) skewX(-3deg) translateX(-1%); }
+}
+@keyframes lick {
+  from { transform: translateX(-50%) rotate(45deg) scale(1); }
+  to   { transform: translateX(-52%) rotate(41deg) scale(1.06, 1.12); }
+}
+
 .fx--fire .ember {
   left: var(--x); bottom: 0; width: var(--s); height: var(--s); border-radius: 50%;
-  background: radial-gradient(circle, #ffd39a 0%, #ff7a2a 45%, transparent 70%);
+  background: radial-gradient(circle, #fff1c2 0%, #ffb347 35%, #ff5a1f 60%, transparent 72%);
   opacity: 0; animation: cardEmber var(--t) linear var(--delay) infinite;
 }
 @keyframes cardEmber {
   0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
-  10%  { opacity: var(--o); }
-  100% { transform: translate3d(var(--dx), -420px, 0) scale(.2); opacity: 0; }
+  8%   { opacity: var(--o); }
+  40%  { opacity: calc(var(--o) * .6); }
+  55%  { opacity: var(--o); }
+  100% { transform: translate3d(var(--dx), -440px, 0) scale(.15); opacity: 0; }
+}
+.fx--fire .smoke {
+  left: var(--x); bottom: 10%; width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, rgba(90,75,65,.32), rgba(60,50,45,.16) 45%, transparent 70%);
+  opacity: 0; animation: smoke var(--t) ease-out var(--delay) infinite;
+}
+@keyframes smoke {
+  0%   { transform: translate3d(0, 0, 0) scale(.5); opacity: 0; }
+  20%  { opacity: .9; }
+  100% { transform: translate3d(var(--dx), -300px, 0) scale(1.9); opacity: 0; }
 }
 .product--picante:hover, .product--picante.is-fx { box-shadow: 0 40px 60px -30px rgba(0,0,0,.9), 0 0 70px -8px rgba(255,90,31,.5); }
 .product--picante:hover .heat__dots i.on, .product--picante.is-fx .heat__dots i.on { animation: heatPulse .8s ease-in-out infinite; }

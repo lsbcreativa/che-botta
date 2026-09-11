@@ -186,15 +186,25 @@
         '--delay': (-rnd(0, 3)).toFixed(2) + 's'
       });
     } else if (kind === 'fire') {
-      for (let i = 0; i < 4; i++) mk('flame', {
-        '--x': (i * 27 + rnd(-4, 4)).toFixed(1) + '%', '--w': rnd(36, 48).toFixed(0) + '%',
-        '--h': rnd(34, 52).toFixed(0) + '%', '--t': rnd(.5, .9).toFixed(2) + 's',
-        '--delay': (-rnd(0, 1)).toFixed(2) + 's'
-      });
-      for (let i = 0; i < 6; i++) mk('ember', {
+      for (let i = 0; i < 9; i++) {
+        const tongue = document.createElement('i');
+        tongue.className = 'tongue';
+        const big = i % 3 === 1;
+        [['--x', (i * 11 - 6 + rnd(-4, 4)).toFixed(1) + '%'], ['--s', (big ? rnd(30, 44) : rnd(18, 28)).toFixed(0) + '%'],
+         ['--t', rnd(.4, .85).toFixed(2) + 's'], ['--delay', (-rnd(0, 1)).toFixed(2) + 's'], ['--z', big ? 1 : 2]]
+          .forEach(([k, v]) => tongue.style.setProperty(k, v));
+        for (let k = 0; k < 3; k++) tongue.appendChild(document.createElement('b'));
+        frag.appendChild(tongue);
+      }
+      for (let i = 0; i < 8; i++) mk('ember', {
         '--x': rnd(10, 90).toFixed(1) + '%', '--s': rnd(2, 5).toFixed(1) + 'px',
         '--t': rnd(2.2, 4).toFixed(1) + 's', '--delay': (-rnd(0, 4)).toFixed(1) + 's',
-        '--dx': rnd(-50, 50).toFixed(0) + 'px', '--o': rnd(.5, .95).toFixed(2)
+        '--dx': rnd(-60, 60).toFixed(0) + 'px', '--o': rnd(.55, 1).toFixed(2)
+      });
+      for (let i = 0; i < 3; i++) mk('smoke', {
+        '--x': rnd(15, 70).toFixed(1) + '%', '--s': rnd(60, 100).toFixed(0) + 'px',
+        '--t': rnd(4, 6.5).toFixed(1) + 's', '--delay': (-rnd(0, 6)).toFixed(1) + 's',
+        '--dx': rnd(-40, 40).toFixed(0) + 'px'
       });
     }
     box.appendChild(frag);
