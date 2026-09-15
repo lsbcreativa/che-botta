@@ -614,6 +614,7 @@ body::before {
 /* ---------- Premium destacado ---------- */
 .productos { background: var(--carbon); }
 .premium {
+  --accent: var(--oro-2);
   position: relative; overflow: hidden;
   display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(2rem, 5vw, 5rem);
   padding: clamp(2rem, 4vw, 3.5rem);
@@ -644,17 +645,12 @@ body::before {
 }
 
 /* Zona visual: ficha de catálogo + foto enmarcada + sello */
-.premium__visual { position: relative; --accent: var(--oro-2); }
+.premium__visual { position: relative; }
 .premium__kicker {
   display: flex; flex-direction: column; align-items: center; gap: .6rem;
   padding-bottom: 1.1rem; margin-bottom: 1rem;
   border-bottom: 1px solid rgba(230,201,135,.22);
 }
-.premium__num {
-  font-family: var(--sans); font-size: .68rem; font-weight: 700; letter-spacing: .22em; color: var(--crema-3);
-  display: flex; align-items: baseline; gap: .3rem;
-}
-.premium__num small { font-size: .68rem; font-weight: 700; color: var(--crema-3); letter-spacing: .1em; opacity: .6; }
 .premium__claim {
   display: flex; align-items: center; gap: .5rem;
   padding: .65rem 1.4rem; border-radius: 999px;
@@ -721,7 +717,7 @@ body::before {
 .premium__more:hover { border-color: var(--oro-2); }
 
 /* Variante Tradicional (verde de marca) */
-.premium--tradicional { border-color: rgba(112,191,68,.28); box-shadow: 0 60px 120px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(112,191,68,.15); }
+.premium--tradicional { --accent: var(--verde); border-color: rgba(112,191,68,.28); box-shadow: 0 60px 120px -50px rgba(0,0,0,.9), inset 0 1px 0 rgba(112,191,68,.15); }
 .premium--tradicional::before { background: linear-gradient(120deg, transparent 30%, rgba(112,191,68,.06) 50%, transparent 70%); }
 .premium--tradicional .premium__glow { background: radial-gradient(circle, rgba(112,191,68,.28), rgba(112,191,68,.08) 45%, transparent 70%); }
 .premium--tradicional .premium__border { background: conic-gradient(from var(--a, 0deg), transparent 0 60%, rgba(130,208,84,.9) 72%, transparent 84%); }
@@ -730,7 +726,6 @@ body::before {
   box-shadow: 0 30px 60px -25px rgba(0,0,0,.9), 0 0 0 1px rgba(112,191,68,.25);
 }
 .premium--tradicional .premium__media::after { box-shadow: inset 0 0 0 1px rgba(112,191,68,.18); }
-.premium--tradicional .premium__visual { --accent: var(--verde); }
 .premium--tradicional .premium__kicker { border-bottom-color: rgba(112,191,68,.25); }
 .premium--tradicional .premium__title em { font-style: italic; font-weight: 500; color: var(--verde); }
 .premium--tradicional .premium__list i { border-color: rgba(112,191,68,.6); }
