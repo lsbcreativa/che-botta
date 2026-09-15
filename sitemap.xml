@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://chebotta.com/</loc>
-    <lastmod>2026-09-11</lastmod>
+    <lastmod>2026-09-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -13,6 +13,10 @@
     <image:image>
       <image:loc>https://chebotta.com/assets/productos/tradicional.webp</image:loc>
       <image:title>Chimichurri Che Botta Tradicional</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://chebotta.com/assets/productos/tradicional-ingredientes.webp</image:loc>
+      <image:title>Ingredientes del Chimichurri Che Botta Tradicional: orégano, ajo, ají panca y aceite</image:title>
     </image:image>
     <image:image>
       <image:loc>https://chebotta.com/assets/productos/premium.webp</image:loc>
