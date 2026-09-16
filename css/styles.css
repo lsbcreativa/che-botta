@@ -1106,6 +1106,7 @@ body::before {
 .contact-tile__value { font-family: var(--serif); font-size: 1.45rem; font-weight: 600; color: var(--crema); line-height: 1.1; word-break: break-all; }
 .contact-tile__hint { font-size: .82rem; color: var(--crema-3); }
 .contact-tile--wa .contact-tile__hint { color: #25d366; }
+.contact-tile--ig .contact-tile__hint { color: #e1306c; }
 
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--linea); background: var(--carbon); padding-top: 3.5rem; }
