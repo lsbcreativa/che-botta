@@ -286,7 +286,7 @@
     let userInteracted = false;
     const goTo = (i) => {
       active = (i + slides.length) % slides.length;
-      slides[active].scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', inline: 'start', block: 'nearest' });
+      reviewsTrack.scrollTo({ left: slides[active].offsetLeft, behavior: reduceMotion ? 'auto' : 'smooth' });
     };
     const setActiveDot = (i) => {
       dots.forEach((d, di) => {
