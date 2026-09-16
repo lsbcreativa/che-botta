@@ -567,19 +567,33 @@ body::before {
   display: grid; grid-template-columns: .85fr 1.15fr; gap: clamp(2.5rem, 6vw, 6rem); align-items: center;
 }
 .homenaje__portrait { position: relative; justify-self: center; width: min(100%, 420px); }
+.homenaje__portrait::before {
+  content: ""; position: absolute; inset: -14%; z-index: 0; border-radius: 50%;
+  background: radial-gradient(circle, rgba(230,201,135,.22), rgba(201,163,90,.06) 55%, transparent 72%);
+  filter: blur(6px);
+  animation: homenajeGlow 5s ease-in-out infinite;
+}
+@keyframes homenajeGlow { 50% { opacity: .55; transform: scale(1.05); } }
 .homenaje__portrait img {
   position: relative; z-index: 1; width: 100%;
   filter: drop-shadow(0 30px 40px rgba(0,0,0,.6));
 }
 .homenaje__ring {
-  position: absolute; inset: -8% -12%; border-radius: 50%;
-  border: 1px solid rgba(201,163,90,.35);
-  animation: ring 14s linear infinite;
+  position: absolute; inset: -8% -12%; border-radius: 50%; pointer-events: none;
 }
 .homenaje__ring::before {
-  content: ""; position: absolute; top: -5px; left: 50%; width: 9px; height: 9px; border-radius: 50%; background: var(--oro);
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 1px solid rgba(201,163,90,.3);
 }
-@keyframes ring { to { transform: rotate(360deg); } }
+.homenaje__ring::after {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; padding: 1.5px;
+  background: conic-gradient(from var(--a, 0deg), transparent 0 66%, rgba(143,111,51,.7) 78%, rgba(255,244,214,1) 87%, rgba(230,201,135,.85) 94%, transparent 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor; mask-composite: exclude;
+  animation: ring 9s linear infinite;
+}
+@keyframes ring { to { --a: 360deg; } }
 .homenaje__place { margin: .9rem 0 1.6rem; font-family: var(--serif); font-size: 1.3rem; font-style: italic; color: var(--oro); }
 .homenaje__years { font-style: normal; font-weight: 600; letter-spacing: .08em; }
 .homenaje__sep { margin-inline: .6rem; opacity: .6; }
@@ -1193,7 +1207,7 @@ body::before {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .marquee__track, .quotes__track, .homenaje__ring, .scroll-cue span, .seal__ring, .embers i, .gold, .intro img, .premium__border, .heat__dots i { animation: none; }
+  .marquee__track, .quotes__track, .homenaje__ring::after, .homenaje__portrait::before, .scroll-cue span, .seal__ring, .embers i, .gold, .intro img, .premium__border, .heat__dots i { animation: none; }
   .to-top { transition: none; }
   .intro { display: none; }
   .btn, .product, .contact-tile { transition: none; }
