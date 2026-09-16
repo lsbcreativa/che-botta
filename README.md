@@ -42,7 +42,7 @@ Alternativa: arrastrar la carpeta a Netlify Drop o conectar el repo a Vercel/Clo
 ## Datos de contacto usados
 
 - WhatsApp: +51 995 951 778 (con mensaje prellenado por producto)
-- Email: contacto.chebotta@gmail.com
+- Email: contacto@chebotta.com
 
 Para cambiar el número, edita `WA_NUMBER` en `js/main.js` y los enlaces `wa.me` en `index.html`.
 
