@@ -286,7 +286,7 @@ body::before {
 
 /* Brasas */
 .embers { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
-.embers i {
+.embers i:not(.smoke):not(.spark) {
   position: absolute; bottom: -10px; left: var(--x);
   width: var(--s); height: var(--s); border-radius: 50%;
   background: radial-gradient(circle, #fff3d6 0%, #ffd39a 22%, #ff7a2a 55%, transparent 75%);
@@ -294,15 +294,15 @@ body::before {
   opacity: 0; filter: blur(.3px);
   animation: ember var(--t) ease-in-out var(--delay) infinite, ember-twinkle var(--tw) ease-in-out calc(var(--delay) * .4) infinite;
 }
-.embers i:nth-of-type(3n) {
+.embers i:not(.smoke):not(.spark):nth-of-type(3n) {
   background: radial-gradient(circle, #fff8e6 0%, #ffe6b8 22%, #ffb020 55%, transparent 75%);
   box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(255, 176, 32, .5);
 }
-.embers i:nth-of-type(4n) {
+.embers i:not(.smoke):not(.spark):nth-of-type(4n) {
   background: radial-gradient(circle, #ffe9d6 0%, #ffb38a 22%, #e8621f 55%, transparent 75%);
   box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(232, 98, 31, .5);
 }
-.embers i:nth-of-type(5n) {
+.embers i:not(.smoke):not(.spark):nth-of-type(5n) {
   background: radial-gradient(circle, #ffdccb 0%, #ff8a65 22%, #d1261f 55%, transparent 75%);
   box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(209, 38, 31, .45);
 }
@@ -318,6 +318,39 @@ body::before {
 @keyframes ember-twinkle {
   0%, 100% { filter: blur(.3px) brightness(1); }
   50% { filter: blur(.3px) brightness(1.5); }
+}
+
+/* Humo */
+.embers i.smoke {
+  position: absolute; bottom: -20px; left: var(--x);
+  width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 216, 205, .65) 0%, rgba(216, 208, 198, .22) 45%, transparent 72%);
+  filter: blur(7px);
+  opacity: 0;
+  animation: humo var(--t) ease-out var(--delay) infinite;
+}
+@keyframes humo {
+  0%   { transform: translate3d(0, 0, 0) scale(.6); opacity: 0; }
+  12%  { opacity: var(--o); }
+  55%  { transform: translate3d(calc(var(--dx) * .6), -55vh, 0) scale(1.5); opacity: calc(var(--o) * .6); }
+  100% { transform: translate3d(var(--dx), -95vh, 0) scale(2.2); opacity: 0; }
+}
+
+/* Chispas: el chisporroteo de la parrilla */
+.embers i.spark {
+  position: absolute; bottom: 6%; left: var(--x);
+  width: var(--s); height: var(--s); border-radius: 50%;
+  background: radial-gradient(circle, #fffdf5 0%, #ffe08a 35%, #ff7a2a 65%, transparent 80%);
+  box-shadow: 0 0 9px 2px rgba(255, 190, 90, .9);
+  opacity: 0;
+  animation: chispa var(--t) ease-out var(--delay) infinite;
+}
+@keyframes chispa {
+  0%   { transform: translate3d(0, 0, 0) scale(.4); opacity: 0; }
+  8%   { transform: translate3d(calc(var(--dx) * .2), calc(var(--rise) * -.3), 0) scale(1); opacity: 1; }
+  35%  { transform: translate3d(calc(var(--dx) * .6), calc(var(--rise) * -.7), 0) scale(.7); opacity: .85; }
+  70%  { transform: translate3d(var(--dx), calc(var(--rise) * -1), 0) scale(.3); opacity: .3; }
+  100% { transform: translate3d(var(--dx), calc(var(--rise) * -1.15), 0) scale(0); opacity: 0; }
 }
 
 .hero__grid {

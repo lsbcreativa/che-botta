@@ -93,6 +93,38 @@
       frag.appendChild(s);
     }
     embers.appendChild(frag);
+
+    // Humo, subiendo lento y disolviendose
+    const smokeN = window.innerWidth < 700 ? 3 : 6;
+    const smokeFrag = document.createDocumentFragment();
+    for (let i = 0; i < smokeN; i++) {
+      const s = document.createElement('i');
+      s.className = 'smoke';
+      s.style.setProperty('--x', `${(Math.random() * 80 + 10).toFixed(2)}%`);
+      s.style.setProperty('--s', `${(Math.random() * 50 + 55).toFixed(0)}px`);
+      s.style.setProperty('--t', `${(Math.random() * 10 + 16).toFixed(1)}s`);
+      s.style.setProperty('--delay', `${(-Math.random() * 24).toFixed(1)}s`);
+      s.style.setProperty('--dx', `${((Math.random() - .5) * 90).toFixed(0)}px`);
+      s.style.setProperty('--o', (Math.random() * .1 + .1).toFixed(2));
+      smokeFrag.appendChild(s);
+    }
+    embers.appendChild(smokeFrag);
+
+    // Chispas, el chisporroteo cerca de la brasa
+    const sparkN = window.innerWidth < 700 ? 8 : 16;
+    const sparkFrag = document.createDocumentFragment();
+    for (let i = 0; i < sparkN; i++) {
+      const s = document.createElement('i');
+      s.className = 'spark';
+      s.style.setProperty('--x', `${(Math.random() * 100).toFixed(2)}%`);
+      s.style.setProperty('--s', `${(Math.random() * 2.2 + 1.8).toFixed(1)}px`);
+      s.style.setProperty('--t', `${(Math.random() * .7 + .5).toFixed(2)}s`);
+      s.style.setProperty('--delay', `${(-Math.random() * 6).toFixed(1)}s`);
+      s.style.setProperty('--dx', `${((Math.random() - .5) * 40).toFixed(0)}px`);
+      s.style.setProperty('--rise', `${(Math.random() * 18 + 8).toFixed(0)}vh`);
+      sparkFrag.appendChild(s);
+    }
+    embers.appendChild(sparkFrag);
   }
 
   /* ---- Reveal on scroll ---- */
