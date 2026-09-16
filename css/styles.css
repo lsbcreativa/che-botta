@@ -234,8 +234,8 @@ body::before {
 }
 .site-header.is-scrolled::after { opacity: 1; }
 .header-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
-.brand img { height: 56px; width: auto; transition: height .4s var(--ease); }
-.site-header.is-scrolled .brand img { height: 44px; }
+.brand img { height: 66px; width: auto; transition: height .4s var(--ease); }
+.site-header.is-scrolled .brand img { height: 52px; }
 
 .nav { display: flex; align-items: center; gap: 2rem; }
 .nav a:not(.btn) {
@@ -1221,10 +1221,10 @@ body::before {
   .nav-cta { margin: .8rem 0 0; padding: .95rem 2rem; font-size: .95rem; }
   .menu-toggle { display: flex; position: relative; z-index: 1001; }
   .brand { position: relative; z-index: 1001; }
-  .brand img { height: 48px; }
+  .brand img { height: 56px; }
   .site-header { background: var(--carbon); }
   .site-header.is-scrolled { background: var(--carbon); backdrop-filter: none; -webkit-backdrop-filter: none; box-shadow: 0 1px 0 var(--linea), 0 10px 30px -10px rgba(0,0,0,.8); }
-  .site-header.is-scrolled .brand img { height: 40px; }
+  .site-header.is-scrolled .brand img { height: 46px; }
 
   .hero { padding-top: calc(var(--header-h) + 1.5rem + env(safe-area-inset-top, 0px)); padding-bottom: 4rem; min-height: auto; }
   .hero__grid { grid-template-columns: 1fr; gap: 2.5rem; }

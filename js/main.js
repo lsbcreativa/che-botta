@@ -46,6 +46,14 @@
       toTop.blur();
     });
   }
+  const brandLink = document.querySelector('.brand');
+  if (brandLink) {
+    brandLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+      brandLink.blur();
+    });
+  }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive: true });
 
