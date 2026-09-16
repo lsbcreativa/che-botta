@@ -290,14 +290,30 @@ body::before {
   position: absolute; bottom: -10px; left: var(--x);
   width: var(--s); height: var(--s); border-radius: 50%;
   background: radial-gradient(circle, #ffd39a 0%, #ff7a2a 45%, transparent 70%);
+  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(255, 140, 60, .45);
   opacity: 0; filter: blur(.3px);
-  animation: ember var(--t) linear var(--delay) infinite;
+  animation: ember var(--t) ease-in-out var(--delay) infinite;
+}
+.embers i:nth-of-type(3n) {
+  background: radial-gradient(circle, #ffe6b8 0%, #ffb020 45%, transparent 70%);
+  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(255, 176, 32, .4);
+}
+.embers i:nth-of-type(4n) {
+  background: radial-gradient(circle, #ffb38a 0%, #e8621f 45%, transparent 70%);
+  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(232, 98, 31, .4);
+}
+.embers i:nth-of-type(5n) {
+  background: radial-gradient(circle, #ff8a65 0%, #d1261f 45%, transparent 70%);
+  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(209, 38, 31, .35);
 }
 @keyframes ember {
-  0%   { transform: translate3d(0, 0, 0) scale(1); opacity: 0; }
-  10%  { opacity: var(--o); }
-  50%  { transform: translate3d(var(--dx), -50vh, 0) scale(.8); opacity: var(--o); }
-  100% { transform: translate3d(calc(var(--dx) * 1.6), -105vh, 0) scale(.2); opacity: 0; }
+  0%   { transform: translate3d(0, 0, 0) scale(.85); opacity: 0; }
+  8%   { opacity: var(--o); }
+  22%  { transform: translate3d(calc(var(--dx) * .35), -22vh, 0) scale(1); opacity: calc(var(--o) * .55); }
+  38%  { transform: translate3d(calc(var(--dx) * -.15), -40vh, 0) scale(.92); opacity: var(--o); }
+  55%  { transform: translate3d(calc(var(--dx) * .55), -60vh, 0) scale(.8); opacity: calc(var(--o) * .6); }
+  72%  { transform: translate3d(calc(var(--dx) * .2), -80vh, 0) scale(.6); opacity: var(--o); }
+  100% { transform: translate3d(calc(var(--dx) * 1.4), -108vh, 0) scale(.15); opacity: 0; }
 }
 
 .hero__grid {
