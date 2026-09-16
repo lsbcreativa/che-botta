@@ -265,4 +265,58 @@
   /* ---- Año en el footer ---- */
   const year = document.querySelector('[data-year]');
   if (year) year.textContent = new Date().getFullYear();
+
+  /* ---- Carrusel de reseñas: una a la vez, con flechas, puntos y avance automático ---- */
+  const reviewsBox = document.querySelector('[data-reviews]');
+  const reviewsTrack = document.querySelector('.reviews__track');
+  const reviewsDotsBox = document.querySelector('.reviews__dots');
+  if (reviewsBox && reviewsTrack && reviewsDotsBox) {
+    const slides = [...reviewsTrack.children];
+    const dots = slides.map((_, i) => {
+      const b = document.createElement('button');
+      b.className = 'reviews__dot';
+      b.type = 'button';
+      b.setAttribute('role', 'tab');
+      b.setAttribute('aria-label', `Ver reseña ${i + 1} de ${slides.length}`);
+      reviewsDotsBox.appendChild(b);
+      return b;
+    });
+
+    let active = 0;
+    let userInteracted = false;
+    const goTo = (i) => {
+      active = (i + slides.length) % slides.length;
+      slides[active].scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', inline: 'start', block: 'nearest' });
+    };
+    const setActiveDot = (i) => {
+      dots.forEach((d, di) => {
+        d.classList.toggle('is-active', di === i);
+        d.setAttribute('aria-selected', di === i ? 'true' : 'false');
+      });
+    };
+    dots.forEach((d, i) => d.addEventListener('click', () => { userInteracted = true; goTo(i); }));
+    reviewsBox.querySelector('.reviews__arrow--prev').addEventListener('click', () => { userInteracted = true; goTo(active - 1); });
+    reviewsBox.querySelector('.reviews__arrow--next').addEventListener('click', () => { userInteracted = true; goTo(active + 1); });
+    ['pointerdown', 'touchstart', 'wheel'].forEach(evt =>
+      reviewsTrack.addEventListener(evt, () => { userInteracted = true; }, { passive: true })
+    );
+
+    if ('IntersectionObserver' in window) {
+      const spy = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.6) {
+            active = slides.indexOf(entry.target);
+            setActiveDot(active);
+          }
+        });
+      }, { root: reviewsTrack, threshold: 0.6 });
+      slides.forEach(s => spy.observe(s));
+    } else {
+      setActiveDot(0);
+    }
+
+    if (!reduceMotion) {
+      setInterval(() => { if (!userInteracted) goTo(active + 1); }, 6500);
+    }
+  }
 })();
