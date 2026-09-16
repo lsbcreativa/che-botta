@@ -289,22 +289,22 @@ body::before {
 .embers i {
   position: absolute; bottom: -10px; left: var(--x);
   width: var(--s); height: var(--s); border-radius: 50%;
-  background: radial-gradient(circle, #ffd39a 0%, #ff7a2a 45%, transparent 70%);
-  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(255, 140, 60, .45);
+  background: radial-gradient(circle, #fff3d6 0%, #ffd39a 22%, #ff7a2a 55%, transparent 75%);
+  box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(255, 140, 60, .55);
   opacity: 0; filter: blur(.3px);
-  animation: ember var(--t) ease-in-out var(--delay) infinite;
+  animation: ember var(--t) ease-in-out var(--delay) infinite, ember-twinkle var(--tw) ease-in-out calc(var(--delay) * .4) infinite;
 }
 .embers i:nth-of-type(3n) {
-  background: radial-gradient(circle, #ffe6b8 0%, #ffb020 45%, transparent 70%);
-  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(255, 176, 32, .4);
+  background: radial-gradient(circle, #fff8e6 0%, #ffe6b8 22%, #ffb020 55%, transparent 75%);
+  box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(255, 176, 32, .5);
 }
 .embers i:nth-of-type(4n) {
-  background: radial-gradient(circle, #ffb38a 0%, #e8621f 45%, transparent 70%);
-  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(232, 98, 31, .4);
+  background: radial-gradient(circle, #ffe9d6 0%, #ffb38a 22%, #e8621f 55%, transparent 75%);
+  box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(232, 98, 31, .5);
 }
 .embers i:nth-of-type(5n) {
-  background: radial-gradient(circle, #ff8a65 0%, #d1261f 45%, transparent 70%);
-  box-shadow: 0 0 calc(var(--s) * 2) calc(var(--s) * .3) rgba(209, 38, 31, .35);
+  background: radial-gradient(circle, #ffdccb 0%, #ff8a65 22%, #d1261f 55%, transparent 75%);
+  box-shadow: 0 0 calc(var(--s) * 2.6) calc(var(--s) * .4) rgba(209, 38, 31, .45);
 }
 @keyframes ember {
   0%   { transform: translate3d(0, 0, 0) scale(.85); opacity: 0; }
@@ -314,6 +314,10 @@ body::before {
   55%  { transform: translate3d(calc(var(--dx) * .55), -60vh, 0) scale(.8); opacity: calc(var(--o) * .6); }
   72%  { transform: translate3d(calc(var(--dx) * .2), -80vh, 0) scale(.6); opacity: var(--o); }
   100% { transform: translate3d(calc(var(--dx) * 1.4), -108vh, 0) scale(.15); opacity: 0; }
+}
+@keyframes ember-twinkle {
+  0%, 100% { filter: blur(.3px) brightness(1); }
+  50% { filter: blur(.3px) brightness(1.5); }
 }
 
 .hero__grid {

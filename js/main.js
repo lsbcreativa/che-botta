@@ -81,13 +81,15 @@
     const frag = document.createDocumentFragment();
     for (let i = 0; i < n; i++) {
       const s = document.createElement('i');
-      const size = (Math.random() * 4 + 2).toFixed(1);
+      const size = Math.random() * 5 + 2;
+      const slowdown = .8 + (size - 2) / 5 * .7; // las brasas grandes flotan mas lento, como si pesaran mas
       s.style.setProperty('--x', `${(Math.random() * 100).toFixed(2)}%`);
-      s.style.setProperty('--s', `${size}px`);
-      s.style.setProperty('--t', `${(Math.random() * 9 + 8).toFixed(1)}s`);
-      s.style.setProperty('--delay', `${(-Math.random() * 16).toFixed(1)}s`);
-      s.style.setProperty('--dx', `${((Math.random() - .5) * 120).toFixed(0)}px`);
-      s.style.setProperty('--o', (Math.random() * .5 + .35).toFixed(2));
+      s.style.setProperty('--s', `${size.toFixed(1)}px`);
+      s.style.setProperty('--t', `${((Math.random() * 8 + 7) * slowdown).toFixed(1)}s`);
+      s.style.setProperty('--delay', `${(-Math.random() * 18).toFixed(1)}s`);
+      s.style.setProperty('--tw', `${(Math.random() * 1.4 + .6).toFixed(2)}s`);
+      s.style.setProperty('--dx', `${((Math.random() - .5) * 130).toFixed(0)}px`);
+      s.style.setProperty('--o', (Math.random() * .5 + .4).toFixed(2));
       frag.appendChild(s);
     }
     embers.appendChild(frag);
