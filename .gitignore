@@ -2,6 +2,9 @@ Thumbs.db
 .DS_Store
 *.log
 
+# Configuración local de Claude Code (datos de conexión SSH, nunca al repo publico)
+.claude/
+
 # Nunca deberían existir en este proyecto, pero por si acaso:
 .env
 .env.*
